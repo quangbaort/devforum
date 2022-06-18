@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-;
 use Illuminate\Http\Request;
-use App\Services\UserService;
+use App\Services\UserServiceInterface;
 
 class UserController extends Controller
 {
@@ -16,7 +15,7 @@ class UserController extends Controller
     *
     * @param UserService $userService
     */
-    public function __construct(UserService $userService)
+    public function __construct(UserServiceInterface $userService)
     {
        $this->userService = $userService;
     }
@@ -27,7 +26,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = $this->userService->userPaginate($request);
+        $users = $this->userService->pagination($request);
         return view('admins.user.index', compact('users'));
     }
 
@@ -93,8 +92,8 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $user)
+    public function destroy($id)
     {
-        //
+       return $this->userService->delete($id);
     }
 }

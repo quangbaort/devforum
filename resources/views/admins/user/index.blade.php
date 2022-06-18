@@ -26,10 +26,19 @@
                             <tr>
                                 <td><img src="/assets/images/users/user-3.jpg" alt="" class="rounded-circle thumb-xs me-1">{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->is_super_admin }}</td>
+                                <td>
+                                    @foreach($user->permissions as $permission)
+                                        {{ $permission->name }}
+                                    @endforeach
+                                </td>
                                 <td class="text-end">
-                                    <a href="#"><i class="las la-pen text-secondary font-16"></i></a>
-                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
+                                    <a href="{{ route('admin.user.update', $user->id) }}"><i class="las la-pen text-secondary font-16"></i></a>
+                                    <form method="POST" class="d-inline" action="{{ route('admin.user.destroy', $user->id) }}">
+                                        @method('delete')
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $user->id }}">
+                                        <a class="btn-delete"><i class="las la-trash-alt text-secondary font-16 "></i><a>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -42,4 +51,7 @@
     </div> <!-- end col -->
 
 </div>
+@endsection
+@section('scripts')
+<script src="/js/fn_common.js"></script>
 @endsection
