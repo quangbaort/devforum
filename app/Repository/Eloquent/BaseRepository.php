@@ -3,6 +3,7 @@
 namespace App\Repository\Eloquent;
 
 use App\Repository\EloquentRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class BaseRepository implements EloquentRepositoryInterface
@@ -10,7 +11,7 @@ class BaseRepository implements EloquentRepositoryInterface
     /**
      * @var Model
      */
-     protected $model;
+    public $model;
 
     /**
      * BaseRepository constructor.
@@ -36,7 +37,7 @@ class BaseRepository implements EloquentRepositoryInterface
     * @param $id
     * @return Model
     */
-    public function find($id): ?Model
+    public function find($id)
     {
         return $this->model->find($id);
     }
@@ -45,10 +46,18 @@ class BaseRepository implements EloquentRepositoryInterface
     * @param $limit
     * @return Model
     */
-    public function userPaginate($limit)
+    public function pagination($limit)
     {
-        if(isset($limit))
-            return $this->model->paginate($limit);
-        return $this->model->paginate(config('const.paginate_default'));
+        return $this->model->paginate($limit);
+    }
+
+     /**
+    * @param $id
+    * @return Model
+    */
+    public function delete($id)
+    {
+        $user = $this->model->find($id);
+        return $this->model->delete($user);
     }
 }

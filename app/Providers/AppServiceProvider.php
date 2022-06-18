@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Services\BaseService;
+use App\Services\ServiceInterface;
+use App\Services\UserService;
+use App\Services\UserServiceInterface;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +26,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->bind(ServiceInterface::class, BaseService::class);
+        $this->app->bind(UserServiceInterface::class, UserService::class);
+
     }
 }
