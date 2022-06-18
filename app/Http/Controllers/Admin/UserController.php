@@ -4,20 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Services\UserServiceInterface;
-
+use App\Services\ServiceInterface\UserServiceInterface;
+use App\Services\ServiceInterface\PermissionServiceInterface;
 class UserController extends Controller
 {
     private $userService;
 
+    private $permissionService;
     /**
     * userService constructor.
     *
     * @param UserService $userService
     */
-    public function __construct(UserServiceInterface $userService)
+    public function __construct(UserServiceInterface $userService, PermissionServiceInterface $permissionService)
     {
-       $this->userService = $userService;
+        $this->userService = $userService;
+        $this->permissionService = $permissionService;
     }
     /**
      * Display a listing of the resource.
@@ -26,8 +28,12 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = $this->userService->pagination($request);
-        return view('admins.user.index', compact('users'));
+        // get user pagination
+        $users = $this->userService->search($request);
+        // get permission list for select
+        $permissions = $this->permissionService->all();
+        // return view with data
+        return view('admins.user.index', compact('users', 'permissions'));
     }
 
     /**
@@ -38,7 +44,6 @@ class UserController extends Controller
     public function create()
     {
         return view('admins.user.create');
-
     }
 
     /**

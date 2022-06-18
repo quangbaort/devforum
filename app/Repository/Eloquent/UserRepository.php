@@ -19,11 +19,28 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     }
 
     /**
-    * @return Collection
+     *
+     * @param Request $request
+     *
+     * @return Collection
     */
-    public function all(): Collection
+    public function search($request) :Object
     {
-       return $this->model->all();
+        // search by name
+        if($request->has('name') && $request->name != '') {
+            $this->model = $this->model->where('name', 'like', '%'.$request->name.'%');
+        }
+        // search by  email
+        if($request->has('email') && $request->email != '') {
+            $this->model = $this->model->where('email', 'like', '%'.$request->email.'%');
+        }
+        // search permissions
+        if($request->has('permission') && $request->permission != '') {
+            $this->model = $this->model->whereHas('permissions', function($query) use ($request) {
+                $query->where('name', 'like', '%'.$request->permissions.'%');
+            });
+        }
+        return $this->model->paginate($request->limit ?? config('const.paginate_default'));
     }
 
 }

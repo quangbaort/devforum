@@ -1,10 +1,10 @@
 <?php
 namespace App\Services;
 
-use App\Services\ServiceInterface;
 use App\Repository\EloquentRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use App\Services\ServiceInterface\ServiceInterface;
 
 class BaseService implements ServiceInterface
 {
@@ -38,15 +38,8 @@ class BaseService implements ServiceInterface
     {
         return $this->repository->find($id);
     }
-    /**
-     * @param $limit
-     * @return Model
-     */
-    public function pagination($request): Object
-    {
-        $limit = $request->limit ?? config('const.paginate_default');
-        return $this->repository->pagination($limit);
-    }
+
+
     /**
      * @param $id
      * @return Model
@@ -55,6 +48,16 @@ class BaseService implements ServiceInterface
     {
         $user = $this->find($id);
         return $user->delete($user);
+    }
+
+    /**
+     * @param array $attributes
+     *
+     * @return Model
+     */
+    public function all(): Collection
+    {
+        return $this->repository->fetchAll();
     }
 }
 

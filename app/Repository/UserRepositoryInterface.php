@@ -6,5 +6,6 @@ use Illuminate\Support\Collection;
 
 interface UserRepositoryInterface
 {
-   public function all(): Collection;
+   public function fetchAll(): Collection;
+   public function search($request): Object;
 }
