@@ -94,6 +94,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-       return $this->userService->delete($id);
+        $delete = $this->userService->delete($id);
+
+        return $delete
+        ? redirect()->route('admin.user.index')->with('success', 'Xóa thành công')
+        : redirect()->route('admin.user.index')->with('error', 'Xóa thất bại');
     }
 }
