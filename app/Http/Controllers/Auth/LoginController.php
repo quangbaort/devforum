@@ -47,9 +47,9 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($user->is_super_admin) {
-            return redirect()->intended(route('admin.index'));
+            return redirect(route('admin.index'));
         }
 
-        return redirect()->intended(route('home'));
+        return redirect(route('home'));
     }
 }
