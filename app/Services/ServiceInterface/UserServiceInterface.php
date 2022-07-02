@@ -8,4 +8,5 @@ interface UserServiceInterface
 {
     public function search($request): Object;
     public function delete($id);
+    public function create(array $attributes): Model;
 }

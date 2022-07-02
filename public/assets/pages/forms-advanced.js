@@ -4,7 +4,7 @@
  * Form Advanced Js
  */
 
-new Selectr('#default');
+// new Selectr('#default');
 new Selectr('#multiSelect',{
     multiple: true
 });
@@ -12,7 +12,7 @@ new Selectr('#taggableSelect',{
     taggable: true,
     tagSeperators: [",", "|"]
 });
- 
+
 // color
 
 var hueb = new Huebee( '.color-input', {
@@ -26,7 +26,7 @@ var hueb = new Huebee( '.color-input', {
 var elem = document.querySelector('input[name="foo"]');
 new Datepicker(elem, {
   // ...options
-}); 
+});
 
 
 elem = document.getElementById('inline_calendar');
@@ -37,7 +37,7 @@ new Datepicker(elem, {
 elem = document.getElementById('DateRange');
 new DateRangePicker(elem, {
   // ...options
-}); 
+});
 
 // Imask
 

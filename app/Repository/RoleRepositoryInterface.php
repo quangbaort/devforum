@@ -1,10 +1,8 @@
 <?php
 namespace App\Repository;
-
-
 use Illuminate\Support\Collection;
 
-interface PermissionRepositoryInterface
+interface RoleRepositoryInterface
 {
     public function all(): Collection;
 }

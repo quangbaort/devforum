@@ -42,14 +42,6 @@ class BaseRepository implements EloquentRepositoryInterface
         return $this->model->find($id);
     }
 
-    /**
-    * @param $limit
-    * @return Model
-    */
-    public function pagination($limit): Object
-    {
-        return $this->model->paginate($limit);
-    }
 
     /**
     * @param $id
@@ -65,7 +57,7 @@ class BaseRepository implements EloquentRepositoryInterface
     *
     * @return Model
     */
-    public function fetchAll(): Collection
+    public function all(): Collection
     {
         return $this->model->all();
     }

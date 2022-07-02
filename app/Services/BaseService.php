@@ -57,7 +57,7 @@ class BaseService implements ServiceInterface
      */
     public function all(): Collection
     {
-        return $this->repository->fetchAll();
+        return $this->repository->all();
     }
 }
 

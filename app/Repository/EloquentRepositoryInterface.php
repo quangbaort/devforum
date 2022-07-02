@@ -22,4 +22,6 @@ interface EloquentRepositoryInterface
     * @return Model
     */
    public function find($id);
+
+   public function all();
 }

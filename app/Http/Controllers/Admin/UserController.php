@@ -6,20 +6,25 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\ServiceInterface\UserServiceInterface;
 use App\Services\ServiceInterface\PermissionServiceInterface;
+use App\Http\Requests\User\{StoreRequest};
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
+use App\Repository\RoleRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     private $userService;
-
     private $permissionService;
+    private $roleRepository;
     /**
     * userService constructor.
     *
     * @param UserService $userService
     */
-    public function __construct(UserServiceInterface $userService, PermissionServiceInterface $permissionService)
+    public function __construct(UserServiceInterface $userService, RoleRepositoryInterface $roleRepository)
     {
         $this->userService = $userService;
-        $this->permissionService = $permissionService;
+        $this->roleRepository = $roleRepository;
     }
     /**
      * Display a listing of the resource.
@@ -31,9 +36,9 @@ class UserController extends Controller
         // get user pagination
         $users = $this->userService->search($request);
         // get permission list for select
-        $permissions = $this->permissionService->all();
+        $roles = $this->roleRepository->all();
         // return view with data
-        return view('admin.users.index', compact('users', 'permissions'));
+        return view('admin.users.index', compact('users', 'roles'));
     }
 
     /**
@@ -43,7 +48,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = $this->roleRepository->all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -52,9 +58,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $user = $this->userService->create($request->all());
+        if($user && !$user->is_super_admin) {
+            $this->userService->assignRoles($request->roles, $user);
+        }
+        return $user ? redirect()->route('admin.users.index')->with('success', 'Thêm mới thành công') :
+        redirect()->route('admin.users.index')->with('error', 'Thêm mới thất bại')->withInput();
     }
 
     /**
@@ -102,7 +113,7 @@ class UserController extends Controller
         $delete = $this->userService->delete($id);
 
         return $delete
-        ? redirect()->route('admin.user.index')->with('success', 'Xóa thành công')
-        : redirect()->route('admin.user.index')->with('error', 'Xóa thất bại');
+        ? redirect()->route('admin.users.index')->with('success', 'Xóa thành công')
+        : redirect()->route('admin.users.index')->with('error', 'Xóa thất bại');
     }
 }
