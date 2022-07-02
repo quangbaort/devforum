@@ -1,6 +1,6 @@
-@include('admins/includes/head')
-@include('admins/includes/left-side-bar')
-@include('admins/includes/top-bar')
+@include('admin/includes/head')
+@include('admin/includes/left-side-bar')
+@include('admin/includes/top-bar')
 
     <div class="page-wrapper">
 
@@ -51,7 +51,7 @@
                 </div><!--end offcanvas-body-->
             </div>
 
-            @include('admins/includes/footer')
+            @include('admin/includes/footer')
 
         </div>
         <!-- end page content -->
