@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Services\ServiceInterface\UserServiceInterface;
-use App\Services\ServiceInterface\PermissionServiceInterface;
+use App\Models\User;
 use App\Http\Requests\User\{StoreRequest};
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Log;
 use App\Repository\RoleRepositoryInterface;
-use Illuminate\Support\Facades\DB;
+use App\Services\ServiceInterface\UserServiceInterface;
+use Illuminate\Http\Request;
+
 class UserController extends Controller
 {
     private $userService;
@@ -26,10 +24,11 @@ class UserController extends Controller
         $this->userService = $userService;
         $this->roleRepository = $roleRepository;
     }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Renderable
      */
     public function index(Request $request)
     {
@@ -44,7 +43,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -55,8 +54,8 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(StoreRequest $request)
     {
@@ -71,10 +70,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return Response
      */
-    public function show( $user)
+    public function show(User $user)
     {
         //
     }
@@ -82,10 +81,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return Response
      */
-    public function edit( $user)
+    public function edit(User $user)
     {
         //
     }
@@ -93,11 +92,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param User $user
+     * @return Response
      */
-    public function update(Request $request,  $user)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -105,13 +104,12 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return RedirectResponse
      */
     public function destroy($id)
     {
         $delete = $this->userService->delete($id);
-
         return $delete
         ? redirect()->route('admin.users.index')->with('success', 'Xóa thành công')
         : redirect()->route('admin.users.index')->with('error', 'Xóa thất bại');
