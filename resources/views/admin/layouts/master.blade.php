@@ -10,10 +10,11 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
     <!-- App css -->
+    @stack('css')
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
-    @stack('css')
+
 </head>
 <body id="body" class="dark-sidebar">
 @include('admin.partials.sidebar')
@@ -28,7 +29,7 @@
 
 <!-- App js -->
 <script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/js/app.js') }}"></script>
 @stack('scripts')
+<script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
 </html>

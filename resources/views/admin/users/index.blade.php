@@ -29,11 +29,11 @@
                                 <div class="col">
                                     {{-- serach by permissions --}}
                                     <div class="form-group">
-                                        <label for="role">{{ __('Permissions') }}</label>
-                                        <select class="form-control" id="role" name="permission">
+                                        <label for="role">{{ __('Roles') }}</label>
+                                        <select class="form-control" id="role" name="roles">
                                             <option value="">{{ __('All') }}</option>
-                                            @foreach ($permissions as $key => $permission)
-                                                <option value="{{ $permission->id }}" {{ old('permission') == $permission->id ? "selected" : "" }} >{{ $permission->name }}</option>
+                                            @foreach ($roles as $key => $role)
+                                                <option value="{{ $role->name }}" {{ old('roles') == $role->name ? "selected" : "" }} >{{ $role->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -63,10 +63,10 @@
                                                 {{ $user->name }}
                                             </td>
                                             <td>{{ $user->email }}</td>
-                                            @if(isset($user->permission))
+                                            @if(isset($user->roles))
                                                 <td>
-                                                    @foreach($user->permissions as $permission)
-                                                        {{ $permission->name }}
+                                                    @foreach($user->roles as $role)
+                                                        {{ $role->name }}
                                                     @endforeach
                                                 </td>
                                             @else

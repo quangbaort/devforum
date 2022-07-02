@@ -4,7 +4,6 @@ namespace App\Repository\Eloquent;
 
 use App\Models\Permission;
 use App\Repository\PermissionRepositoryInterface;
-use Illuminate\Support\Collection;
 
 class PermissionRepository extends BaseRepository implements PermissionRepositoryInterface
 {

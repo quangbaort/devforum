@@ -35,9 +35,9 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
             $this->model = $this->model->where('email', 'like', '%'.$request->email.'%');
         }
         // search permissions
-        if($request->has('permission') && $request->permission != '') {
-            $this->model = $this->model->whereHas('permissions', function($query) use ($request) {
-                $query->where('name', 'like', '%'.$request->permissions.'%');
+        if($request->has('roles') && $request->roles != '') {
+            $this->model = $this->model->whereHas('roles', function($query) use ($request) {
+                $query->where('name', 'like', '%'.$request->roles.'%');
             });
         }
         return $this->model->paginate($request->limit ?? config('const.paginate_default'));

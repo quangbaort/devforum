@@ -2,9 +2,10 @@
 namespace App\Services;
 
 use App\Repository\UserRepositoryInterface;
-use Illuminate\Support\Arr;
+
 use Illuminate\Support\Collection;
 use App\Services\ServiceInterface\UserServiceInterface;
+use Illuminate\Database\Eloquent\Model;
 
 
 class UserService extends BaseService implements UserServiceInterface
@@ -34,4 +35,8 @@ class UserService extends BaseService implements UserServiceInterface
         return $this->userRepository->search($request);
     }
 
+    public function assignRoles(array $roles, Object $user)
+    {
+        return $user->assignRole($roles);
+    }
 }
