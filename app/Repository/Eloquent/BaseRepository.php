@@ -37,7 +37,7 @@ class BaseRepository implements EloquentRepositoryInterface
     * @param $id
     * @return Model
     */
-    public function find($id)
+    public function find($id): Model
     {
         return $this->model->find($id);
     }
@@ -53,18 +53,18 @@ class BaseRepository implements EloquentRepositoryInterface
 
     /**
     * @param $id
-    * @return Model
-    */
-    public function delete($id)
+    * @return bool|null
+     */
+    public function delete($id): ?bool
     {
         $user = $this->model->find($id);
         return $this->model->delete($user);
     }
 
     /**
-    *
-    * @return Model
-    */
+     *
+     * @return Collection
+     */
     public function fetchAll(): Collection
     {
         return $this->model->all();
