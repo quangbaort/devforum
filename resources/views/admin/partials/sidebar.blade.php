@@ -36,17 +36,17 @@
                 <ul class="navbar-nav tab-pane active" id="Main" role="tabpanel">
                     <li class="nav-item">
                         <a class="nav-link" href="#sidebarAnalytics" data-bs-toggle="collapse" role="button"
-                            aria-expanded="{{ Request::is('admin/user/*') ||  Request::is('admin/user') ? 'true' : 'false' }}" aria-controls="sidebarAnalytics">
+                           aria-expanded="{{ Request::is('admin/users/*') ||  Request::is('admin/users') ? 'true' : 'false' }}" aria-controls="sidebarAnalytics">
                             <i class="fas fa-users menu-icon"></i>
                             <span>{{ __('Users') }}</span>
                         </a>
-                        <div class="collapse {{ Request::is('admin/user/*') ||  Request::is('admin/user') ? 'show' : 'hide' }}" id="sidebarAnalytics">
+                        <div class="collapse {{ Request::is('admin/users/*') ||  Request::is('admin/users') ? 'show' : 'hide' }}" id="sidebarAnalytics">
                             <ul class="nav flex-column">
-                                <li class="nav-item  {{ Request::is('admin/user') ? 'menuitem-active' : '' }}">
-                                    <a href="{{ route('admin.user.index') }}" class="nav-link {{ Request::is('admin/user') ? 'active' : '' }}">{{ __('List User') }}</a>
+                                <li class="nav-item  {{ Request::is('admin/users') ? 'menuitem-active' : '' }}">
+                                    <a href="{{ route('admin.users.index') }}" class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}">{{ __('List User') }}</a>
                                 </li>
-                                <li class="nav-item {{ Request::is('admin/user/create') ? 'menuitem-active' : '' }}">
-                                    <a class="nav-link {{ Request::is('admin/user/create') ? 'active' : '' }}" href="{{ route('admin.user.create') }}">{{ __('Create user') }}</a>
+                                <li class="nav-item {{ Request::is('admin/users/create') ? 'menuitem-active' : '' }}">
+                                    <a class="nav-link {{ Request::is('admin/users/create') ? 'active' : '' }}" href="{{ route('admin.users.create') }}">{{ __('Create user') }}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="analytics-reports.html" class="nav-link ">{{ __('List Role') }}</a>

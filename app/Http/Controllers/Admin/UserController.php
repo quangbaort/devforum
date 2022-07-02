@@ -33,7 +33,7 @@ class UserController extends Controller
         // get permission list for select
         $permissions = $this->permissionService->all();
         // return view with data
-        return view('admin.user.index', compact('users', 'permissions'));
+        return view('admin.users.index', compact('users', 'permissions'));
     }
 
     /**
@@ -43,7 +43,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.users.create');
     }
 
     /**

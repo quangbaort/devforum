@@ -1,17 +1,19 @@
 <?php
 
 // Home
-Breadcrumbs::for('home', function ($trail) {
-    $trail->push('Home', route('admin.index'));
+use Diglactic\Breadcrumbs\Breadcrumbs;
+
+Breadcrumbs::for('Dashboard', function ($trail) {
+    $trail->push('Dashboard', route('admin.dashboard'));
 });
 
 // Home > About
 Breadcrumbs::for(__('List user'), function ($trail) {
-    $trail->push(__('List user'), route('admin.user.index'));
+    $trail->push(__('List user'), route('admin.users.index'));
 });
 Breadcrumbs::for(__('Create user'), function ($trail) {
     $trail->parent(__('List user'));
-    $trail->push(__('Create user'), route('admin.user.index'));
+    $trail->push(__('Create user'), route('admin.users.index'));
 });
 
 

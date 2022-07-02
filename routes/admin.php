@@ -5,4 +5,4 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard');
-Route::resource('user', UserController::class);
+Route::resource('users', UserController::class);
