@@ -17,6 +17,12 @@ Breadcrumbs::for('admin.users.create', function ($trail) {
     $trail->push('Create', route('admin.users.create'));
 });
 
+// Roles
+Breadcrumbs::for('admin.roles.index', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Roles', route('admin.roles.index'));
+});
+
 // // Home > Blog
 // Breadcrumbs::for('blog', function ($trail) {
 //     $trail->parent('home');

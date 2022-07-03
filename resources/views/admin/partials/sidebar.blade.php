@@ -43,16 +43,16 @@
                         <div class="collapse {{ Request::is('admin/users/*') ||  Request::is('admin/users') ? 'show' : 'hide' }}" id="sidebarAnalytics">
                             <ul class="nav flex-column">
                                 <li class="nav-item  {{ Request::is('admin/users') ? 'menuitem-active' : '' }}">
-                                    <a href="{{ route('admin.users.index') }}" class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}">{{ __('List User') }}</a>
+                                    <a href="{{ route('admin.users.index') }}" class="nav-link {{ Request::is('admin/users') ? 'active' : '' }}">@lang('User list')</a>
                                 </li>
                                 <li class="nav-item {{ Request::is('admin/users/create') ? 'menuitem-active' : '' }}">
-                                    <a class="nav-link {{ Request::is('admin/users/create') ? 'active' : '' }}" href="{{ route('admin.users.create') }}">{{ __('Create user') }}</a>
+                                    <a class="nav-link {{ Request::is('admin/users/create') ? 'active' : '' }}" href="{{ route('admin.users.create') }}">@lang('Create user')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="analytics-reports.html" class="nav-link ">{{ __('List Role') }}</a>
+                                    <a href="{{ route('admin.roles.index') }}" class="nav-link ">@lang('Role List')</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="analytics-reports.html" class="nav-link ">{{ __('List Permision') }}</a>
+                                    <a href="analytics-reports.html" class="nav-link ">@lang('Permission List')</a>
                                 </li>
                             </ul>
                         </div>
