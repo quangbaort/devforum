@@ -87,9 +87,12 @@ class UserController extends Controller
      * @param User $user
      * @return Response
      */
-    public function edit(User $user)
+    public function edit($userID)
     {
-        //
+        $roles = $this->roleRepository->all();
+        $user = $this->userService->find($userID);
+        $userRoleId = $user->roles->pluck('id')->toArray();
+        return view('admin.users.edit', compact('roles', 'user', 'userRoleId'));
     }
 
     /**
@@ -99,9 +102,15 @@ class UserController extends Controller
      * @param User $user
      * @return Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $userID)
     {
-        //
+        $user = $this->userService->find($userID);
+        $updated = $user->update($request->all());
+        if($updated){
+            $this->userService->syncRoleUser($request->roles, $user);
+        }
+        return $updated ? redirect()->route('admin.users.index')->with('success', 'Thay đổi thành công') :
+        redirect()->route('admin.users.index')->with('error', 'Thay đổi thất bại')->withInput();
     }
 
     /**

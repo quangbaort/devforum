@@ -9,11 +9,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.users.store') }}" method="post">
+                    <form action="{{ route('admin.users.update', $user->id) }}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="mb-3">
                             <label for="name" class="form-label">@lang('Name')</label>
-                            <input type="text" id="name" name="name" @class(['form-control', 'is-invalid' => $errors->has('name')]) placeholder="@lang('Name')" autocomplete="off" required value="{{ old('name') ?? '' }}">
+                            <input type="text" id="name" name="name" @class(['form-control', 'is-invalid' => $errors->has('name')]) placeholder="@lang('Name')" autocomplete="off" required value="{{ old('name') ?? $user->name }}">
                             @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -22,14 +23,15 @@
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">@lang('Email')</label>
-                            <input type="email" id="email" name="email" @class(['form-control', 'is-invalid' => $errors->has('email')]) placeholder="@lang('Email')" value="{{ old('email') ?? '' }}" autocomplete="off" required>
+                            <input type="email" id="email" name="email" @class(['form-control', 'is-invalid' => $errors->has('email')]) placeholder="@lang('Email')" value="{{ old('email') ?? $user->email }}" autocomplete="off" required>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <a href="javaScript:void(0)" class="text-end d-block">Thay đổi mật khẩu</a>
+                        {{-- <div class="mb-3">
                             <label for="password" class="form-label">@lang('Password')</label>
                             <input type="password" id="password" name="password" @class(['form-control', 'is-invalid' => $errors->has('password')]) placeholder="@lang('Password')" autocomplete="off" required>
                             @error('password')
@@ -46,13 +48,13 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="mb-3">
                             <label for="roles">@lang('Roles')</label>
                             <select class="form-control" id="multiSelect" name="roles[]" required>
                                 @foreach ($roles as $key => $role)
-                                    <option value="{{ $role->id }}" {{ old('permission') == $role->id ? "selected" : "" }} >{{ $role->name }}</option>
+                                    <option value="{{ $role->id }}" {{ old('permission') == $role->id || in_array($role->id, $userRoleId) ? "selected" : "" }} >{{ $role->name }}</option>
                                 @endforeach
                             </select>
                             @error('permissions')
