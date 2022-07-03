@@ -9,11 +9,12 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.users.store') }}" method="post">
+                    <form action="{{ route('admin.users.update', $user->id) }}" method="post">
                         @csrf
+                        @method('PUT')
                         <div class="mb-3">
                             <label for="name" class="form-label">@lang('Name')</label>
-                            <input type="text" id="name" name="name" @class(['form-control', 'is-invalid' => $errors->has('name')]) placeholder="@lang('Name')" autocomplete="off" required value="{{ old('name') ?? '' }}">
+                            <input type="text" id="name" name="name" @class(['form-control', 'is-invalid' => $errors->has('name')]) placeholder="@lang('Name')" autocomplete="off" required value="{{ old('name') ?? $user->name }}">
                             @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -22,25 +23,26 @@
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">@lang('Email')</label>
-                            <input type="email" id="email" name="email" @class(['form-control', 'is-invalid' => $errors->has('email')]) placeholder="@lang('Email')" value="{{ old('email') ?? '' }}" autocomplete="off" required>
+                            <input type="email" id="email" name="email" @class(['form-control', 'is-invalid' => $errors->has('email')]) placeholder="@lang('Email')" value="{{ old('email') ?? $user->email }}" autocomplete="off" required>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <a href="javaScript:void(0)" class="text-end d-block" onclick="toggleChangePassword()">Thay đổi mật khẩu</a>
+                         <div class="mb-3 change-password">
                             <label for="password" class="form-label">@lang('Password')</label>
-                            <input type="password" id="password" name="password" @class(['form-control', 'is-invalid' => $errors->has('password')]) placeholder="@lang('Password')" autocomplete="off" required>
+                            <input type="password" id="password" name="password" @class(['form-control', 'is-invalid' => $errors->has('password')]) placeholder="@lang('Password')">
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 change-password">
                             <label for="password_confirmation" class="form-label">@lang('Password Confirmation')</label>
-                            <input type="password" id="password_confirmation" name="password_confirmation" @class(['form-control', 'is-invalid' => $errors->has('password_confirmation')]) placeholder="@lang('Password Confirmation')" autocomplete="off" required>
+                            <input type="password" id="password_confirmation" name="password_confirmation" @class(['form-control', 'is-invalid' => $errors->has('password_confirmation')]) placeholder="@lang('Password Confirmation')">
                             @error('password_confirmation')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -50,9 +52,9 @@
 
                         <div class="mb-3">
                             <label for="roles">@lang('Roles')</label>
-                            <select class="form-control select2" id="roles" name="roles[]" required multiple>
+                            <select class="form-control select2" id="roles" name="roles[]" multiple>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role->id }}" {{ old('permission') == $role->id ? "selected" : "" }} >{{ $role->name }}</option>
+                                    <option value="{{ $role->id }}" @if (in_array($role->id, $user->roles->pluck('id')->toArray())) selected @endif>{{ $role->name }}</option>
                                 @endforeach
                             </select>
                             @error('permissions')
@@ -67,8 +69,8 @@
                                 <label class="form-check-label" for="role">Super Admin</label>
                                 @error('is_super_admin')
                                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -81,6 +83,13 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
-    <script src="{{ asset('js/fn_common.js') }}"></script>
+<script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset('js/fn_common.js') }}"></script>
+<script>
+    let changePasswordEl = $('.change-password');
+    changePasswordEl.hide();
+    function toggleChangePassword() {
+        changePasswordEl.toggle();
+    }
+</script>
 @endpush

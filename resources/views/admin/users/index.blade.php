@@ -68,7 +68,7 @@
                                         @endforelse
                                     </td>
                                     <td class="text-end">
-                                        <a href="{{ route('admin.users.update', $user->id) }}">
+                                        <a href="{{ route('admin.users.edit', $user->id) }}">
                                             <i class="las la-pen text-secondary font-16"></i>
                                         </a>
                                         <form method="POST" class="d-inline" action="{{ route('admin.users.destroy', $user->id) }}">
