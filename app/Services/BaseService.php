@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Services;
 
 use App\Repository\EloquentRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Collection;
 use App\Services\ServiceInterface\ServiceInterface;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 class BaseService implements ServiceInterface
 {
@@ -12,6 +13,7 @@ class BaseService implements ServiceInterface
      * @var EloquentRepositoryInterface
      */
     public $repository;
+
     /**
      * BaseService constructor.
      *
@@ -21,6 +23,7 @@ class BaseService implements ServiceInterface
     {
         $this->repository = $repository;
     }
+
     /**
      * @param array $attributes
      *
@@ -30,30 +33,28 @@ class BaseService implements ServiceInterface
     {
         return $this->repository->create($attributes);
     }
+
     /**
      * @param $id
      * @return Model
      */
-    public function find($id)
+    public function find($id): Model
     {
         return $this->repository->find($id);
     }
 
-
     /**
      * @param $id
-     * @return Model
+     * @return bool
      */
-    public function delete($id)
+    public function delete($id): bool
     {
         $user = $this->find($id);
         return $user->delete($user);
     }
 
     /**
-     * @param array $attributes
-     *
-     * @return Model
+     * @return Collection
      */
     public function all(): Collection
     {

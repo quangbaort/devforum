@@ -17,5 +17,4 @@ class RoleRepository extends BaseRepository implements RoleRepositoryInterface
     {
         parent::__construct($model);
     }
-
 }

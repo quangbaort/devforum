@@ -54,12 +54,11 @@ class BaseRepository implements EloquentRepositoryInterface
     }
 
     /**
-    *
-    * @return Model
-    */
+     *
+     * @return Collection
+     */
     public function all(): Collection
     {
         return $this->model->all();
     }
-
 }

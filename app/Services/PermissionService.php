@@ -2,7 +2,6 @@
 namespace App\Services;
 
 use App\Repository\PermissionRepositoryInterface;
-use Illuminate\Support\Collection;
 use App\Services\ServiceInterface\PermissionServiceInterface;
 
 class PermissionService extends BaseService implements PermissionServiceInterface
@@ -10,10 +9,10 @@ class PermissionService extends BaseService implements PermissionServiceInterfac
     public $permissionRepository;
 
     /**
-    * userRepository constructor.
-    *
-    * @param PermissionServiceInterface $permissionRepository
-    */
+     * userRepository constructor.
+     *
+     * @param PermissionRepositoryInterface $permissionRepository
+     */
     public function __construct(PermissionRepositoryInterface $permissionRepository)
     {
         parent::__construct($permissionRepository);

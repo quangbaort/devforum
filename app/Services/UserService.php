@@ -1,11 +1,12 @@
 <?php
 namespace App\Services;
 
+use App\Models\User;
 use App\Repository\UserRepositoryInterface;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Services\ServiceInterface\UserServiceInterface;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
 
 
 class UserService extends BaseService implements UserServiceInterface
@@ -24,18 +25,16 @@ class UserService extends BaseService implements UserServiceInterface
     }
 
     /**
-    *
-    *
     * @param Request $request
     * @return Collection
     */
     public function search($request): Object
     {
-        session()->flashInput($request->input());
+        Session::flashInput($request->input());
         return $this->userRepository->search($request);
     }
 
-    public function assignRoles(array $roles, Object $user)
+    public function assignRoles(array $roles, User $user): User
     {
         return $user->assignRole($roles);
     }
