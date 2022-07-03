@@ -48,46 +48,44 @@
                             <tr>
                                 <th>@lang('Name')</th>
                                 <th>@lang('Email')</th>
-                                <th>@lang('Permission')</th>
+                                <th>@lang('Roles')</th>
                                 <th class="text-end">@lang('Action')</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @if($users->count() > 0)
-                                @foreach($users as $user)
-                                    <tr>
-                                        <td>
-                                            <img src="{{ asset('assets/images/users/user-3.jpg') }}" alt="" class="rounded-circle thumb-xs me-1">
-                                            {{ $user->name }}
-                                        </td>
-                                        <td>{{ $user->email }}</td>
-                                        @if(isset($user->roles))
-                                            <td>
-                                                @foreach($user->roles as $role)
-                                                    {{ $role->name }}
-                                                @endforeach
-                                            </td>
-                                        @else
-                                            <td>@lang('No permission')</td>
-                                        @endif
-                                        <td class="text-end">
-                                            <a href="{{ route('admin.users.update', $user->id) }}"><i class="las la-pen text-secondary font-16"></i></a>
-                                            <form method="POST" class="d-inline" action="{{ route('admin.users.destroy', $user->id) }}">
-                                                @method('delete')
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{ $user->id }}">
-                                                <a class="btn-delete">
-                                                    <i class="las la-trash-alt text-secondary font-16"></i>
-                                                </a>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            @else
+                            @forelse($users as $user)
+                                <tr>
+                                    <td>
+                                        <img src="{{ asset('assets/images/users/user-3.jpg') }}" alt="" class="rounded-circle thumb-xs me-1">
+                                        {{ $user->name }}
+                                    </td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>
+                                        @forelse($user->roles as $role)
+                                            {{ $role->name }}
+                                        @empty
+                                            @lang('No Role')
+                                        @endforelse
+                                    </td>
+                                    <td class="text-end">
+                                        <a href="{{ route('admin.users.update', $user->id) }}">
+                                            <i class="las la-pen text-secondary font-16"></i>
+                                        </a>
+                                        <form method="POST" class="d-inline" action="{{ route('admin.users.destroy', $user->id) }}">
+                                            @method('delete')
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $user->id }}">
+                                            <a class="btn-delete">
+                                                <i class="las la-trash-alt text-secondary font-16"></i>
+                                            </a>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
                                 <tr>
                                     <td colspan="4">@lang('No data')</td>
                                 </tr>
-                            @endif
+                            @endforelse
                             </tbody>
                         </table>
                         {{ $users->links('vendor.pagination.custom') }}
@@ -102,3 +100,4 @@
 @push('scripts')
     <script src="{{ asset('js/fn_common.js') }}"></script>
 @endpush
+
