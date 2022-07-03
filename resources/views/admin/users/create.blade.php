@@ -12,53 +12,53 @@
                     <form action="{{ route('admin.users.store') }}" method="post">
                         @csrf
                         <div class="mb-3">
-                            <label for="name" class="form-label">Họ tên</label>
-                            <input type="text" id="name" name="name" @class(['form-control', 'is-invalid' => $errors->has('name')]) placeholder="Họ tên người dùng" autocomplete="off" required value="{{ old('name') ?? '' }}">
+                            <label for="name" class="form-label">@lang('Name')</label>
+                            <input type="text" id="name" name="name" @class(['form-control', 'is-invalid' => $errors->has('name')]) placeholder="@lang('Name')" autocomplete="off" required value="{{ old('name') ?? '' }}">
                             @error('name')
                             <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">@lang('Email')</label>
-                            <input type="email" id="email" name="email" @class(['form-control', 'is-invalid' => $errors->has('email')]) placeholder="Email người dùng" value="{{ old('email') ?? '' }}" autocomplete="off" required>
+                            <input type="email" id="email" name="email" @class(['form-control', 'is-invalid' => $errors->has('email')]) placeholder="@@lang('Email')" value="{{ old('email') ?? '' }}" autocomplete="off" required>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">@lang('Password')</label>
-                            <input type="password" id="password" name="password" @class(['form-control', 'is-invalid' => $errors->has('password')]) placeholder="Mật khẩu người dùng" autocomplete="off" required>
+                            <input type="password" id="password" name="password" @class(['form-control', 'is-invalid' => $errors->has('password')]) placeholder="@lang('Password')" autocomplete="off" required>
                             @error('password')
                             <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="password_confirmation" class="form-label">@lang('Password Confirmation')</label>
-                            <input type="password" id="password_confirmation" name="password_confirmation" @class(['form-control', 'is-invalid' => $errors->has('password_confirmation')]) placeholder="Xác nhận mật khẩu người dùng" autocomplete="off" required>
+                            <input type="password" id="password_confirmation" name="password_confirmation" @class(['form-control', 'is-invalid' => $errors->has('password_confirmation')]) placeholder="@lang('Password Confirmation')" autocomplete="off" required>
                             @error('password_confirmation')
                             <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                            <label for="multiSelect">{{ __('Roles') }}</label>
-                            <select class="form-control" id="multiSelect" name="roles[]" required>
+                            <label for="roles">@lang('Roles')</label>
+                            <select class="form-control" id="roles" name="roles[]" required>
                                 @foreach ($roles as $key => $role)
                                     <option value="{{ $role->id }}" {{ old('permission') == $role->id ? "selected" : "" }} >{{ $role->name }}</option>
                                 @endforeach
                             </select>
                             @error('permissions')
                             <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                         <div class="mb-3">
@@ -72,7 +72,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Tạo mới</button>
+                        <button type="submit" class="btn btn-primary">@lang('Create new')</button>
                     </form>
                 </div>
             </div>
