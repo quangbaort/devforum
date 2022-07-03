@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @push('css')
-    <link rel="stylesheet" href="{{ asset('assets/plugins/select/selectr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
 @endpush
 
 @section('content')
@@ -52,7 +52,7 @@
 
                         <div class="mb-3">
                             <label for="roles">@lang('Roles')</label>
-                            <select class="form-control" id="multiSelect" name="roles[]">
+                            <select class="form-control select2" id="roles" name="roles[]" multiple>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}" @if (in_array($role->id, $user->roles->pluck('id')->toArray())) selected @endif>{{ $role->name }}</option>
                                 @endforeach
@@ -83,8 +83,8 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('assets/plugins/select/selectr.min.js') }}"></script>
-<script src="{{ asset('assets/pages/forms-advanced.js') }}"></script>
+<script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset('js/fn_common.js') }}"></script>
 <script>
     let changePasswordEl = $('.change-password');
     changePasswordEl.hide();
