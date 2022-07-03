@@ -22,7 +22,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">@lang('Email')</label>
-                            <input type="email" id="email" name="email" @class(['form-control', 'is-invalid' => $errors->has('email')]) placeholder="@@lang('Email')" value="{{ old('email') ?? '' }}" autocomplete="off" required>
+                            <input type="email" id="email" name="email" @class(['form-control', 'is-invalid' => $errors->has('email')]) placeholder="@lang('Email')" value="{{ old('email') ?? '' }}" autocomplete="off" required>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
