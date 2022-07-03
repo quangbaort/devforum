@@ -1,21 +1,21 @@
 <?php
 
-// Home
 use Diglactic\Breadcrumbs\Breadcrumbs;
 
-Breadcrumbs::for('Dashboard', function ($trail) {
+// Dashboard
+Breadcrumbs::for('admin.dashboard', function ($trail) {
     $trail->push('Dashboard', route('admin.dashboard'));
 });
 
-// Home > About
-Breadcrumbs::for(__('List user'), function ($trail) {
-    $trail->push(__('List user'), route('admin.users.index'));
+// Users
+Breadcrumbs::for('admin.users.index', function ($trail) {
+    $trail->parent('admin.dashboard');
+    $trail->push('Users', route('admin.users.index'));
 });
-Breadcrumbs::for(__('Create user'), function ($trail) {
-    $trail->parent(__('List user'));
-    $trail->push(__('Create user'), route('admin.users.index'));
+Breadcrumbs::for('admin.users.create', function ($trail) {
+    $trail->parent('admin.users.index');
+    $trail->push('Create', route('admin.users.create'));
 });
-
 
 // // Home > Blog
 // Breadcrumbs::for('blog', function ($trail) {

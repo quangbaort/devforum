@@ -22,7 +22,10 @@
 
 <div class="page-wrapper">
     <div class="page-content-tab">
-        @yield('content')
+        <div class="container-fluid">
+            {{ Breadcrumbs::render() }}
+            @yield('content')
+        </div>
         @include('admin.partials.footer')
     </div>
 </div>
