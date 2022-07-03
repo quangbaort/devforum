@@ -43,7 +43,7 @@ class UserService extends BaseService implements UserServiceInterface
         return $user->roles()->detach();
     }
 
-    public function syncRoleUser(array $roles, User $user)
+    public function syncRoleUser(array $roles, User $user): bool
     {
         $roleOfUser = $user->roles->pluck('id')->toArray();
         try{

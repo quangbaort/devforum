@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
-use App\Http\Requests\User\{StoreRequest};
 use App\Repository\RoleRepositoryInterface;
 use App\Services\ServiceInterface\UserServiceInterface;
 use Illuminate\Contracts\Support\Renderable;
@@ -17,11 +17,13 @@ class UserController extends Controller
     private $userService;
     private $permissionService;
     private $roleRepository;
+
     /**
-    * userService constructor.
-    *
-    * @param UserService $userService
-    */
+     * userService constructor.
+     *
+     * @param UserServiceInterface $userService
+     * @param RoleRepositoryInterface $roleRepository
+     */
     public function __construct(UserServiceInterface $userService, RoleRepositoryInterface $roleRepository)
     {
         $this->userService = $userService;
@@ -46,7 +48,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Renderable
      */
     public function create()
     {
@@ -57,17 +59,17 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
-     * @return Response
+     * @param UserRequest $request
+     * @return RedirectResponse
      */
-    public function store(StoreRequest $request)
+    public function store(UserRequest $request)
     {
         $user = $this->userService->create($request->all());
-        if($user && !$user->is_super_admin) {
+        if ($user && !$user->is_super_admin) {
             $this->userService->assignRoles($request->roles, $user);
         }
         return $user ? redirect()->route('admin.users.index')->with('success', 'Thêm mới thành công') :
-        redirect()->route('admin.users.index')->with('error', 'Thêm mới thất bại')->withInput();
+            redirect()->route('admin.users.index')->with('error', 'Thêm mới thất bại')->withInput();
     }
 
     /**
@@ -84,33 +86,35 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param User $user
-     * @return Response
+     * @param $userID
+     * @return Renderable
      */
     public function edit($userID)
     {
         $roles = $this->roleRepository->all();
         $user = $this->userService->find($userID);
         $userRoleId = $user->roles->pluck('id')->toArray();
+
         return view('admin.users.edit', compact('roles', 'user', 'userRoleId'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param User $user
-     * @return Response
+     * @param UserRequest $request
+     * @param $userID
+     * @return RedirectResponse
      */
-    public function update(Request $request, $userID)
+    public function update(UserRequest $request, $userID)
     {
         $user = $this->userService->find($userID);
-        $updated = $user->update($request->all());
-        if($updated){
-            $this->userService->syncRoleUser($request->roles, $user);
+        $updated = $user->update($request->filled('password') ? $request->validated() : $request->except('password'));
+        if ($updated) {
+            $this->userService->syncRoleUser($request->roles ?? [], $user);
         }
+
         return $updated ? redirect()->route('admin.users.index')->with('success', 'Thay đổi thành công') :
-        redirect()->route('admin.users.index')->with('error', 'Thay đổi thất bại')->withInput();
+            redirect()->route('admin.users.index')->with('error', 'Thay đổi thất bại')->withInput();
     }
 
     /**
@@ -123,7 +127,7 @@ class UserController extends Controller
     {
         $delete = $this->userService->delete($id);
         return $delete
-        ? redirect()->route('admin.users.index')->with('success', 'Xóa thành công')
-        : redirect()->route('admin.users.index')->with('error', 'Xóa thất bại');
+            ? redirect()->route('admin.users.index')->with('success', 'Xóa thành công')
+            : redirect()->route('admin.users.index')->with('error', 'Xóa thất bại');
     }
 }

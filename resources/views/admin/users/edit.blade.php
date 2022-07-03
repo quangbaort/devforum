@@ -30,31 +30,31 @@
                             </span>
                             @enderror
                         </div>
-                        <a href="javaScript:void(0)" class="text-end d-block">Thay đổi mật khẩu</a>
-                        {{-- <div class="mb-3">
+                        <a href="javaScript:void(0)" class="text-end d-block" onclick="toggleChangePassword()">Thay đổi mật khẩu</a>
+                         <div class="mb-3 change-password">
                             <label for="password" class="form-label">@lang('Password')</label>
-                            <input type="password" id="password" name="password" @class(['form-control', 'is-invalid' => $errors->has('password')]) placeholder="@lang('Password')" autocomplete="off" required>
+                            <input type="password" id="password" name="password" @class(['form-control', 'is-invalid' => $errors->has('password')]) placeholder="@lang('Password')">
                             @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 change-password">
                             <label for="password_confirmation" class="form-label">@lang('Password Confirmation')</label>
-                            <input type="password" id="password_confirmation" name="password_confirmation" @class(['form-control', 'is-invalid' => $errors->has('password_confirmation')]) placeholder="@lang('Password Confirmation')" autocomplete="off" required>
+                            <input type="password" id="password_confirmation" name="password_confirmation" @class(['form-control', 'is-invalid' => $errors->has('password_confirmation')]) placeholder="@lang('Password Confirmation')">
                             @error('password_confirmation')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                        </div> --}}
+                        </div>
 
                         <div class="mb-3">
                             <label for="roles">@lang('Roles')</label>
-                            <select class="form-control" id="multiSelect" name="roles[]" required>
-                                @foreach ($roles as $key => $role)
-                                    <option value="{{ $role->id }}" {{ old('permission') == $role->id || in_array($role->id, $userRoleId) ? "selected" : "" }} >{{ $role->name }}</option>
+                            <select class="form-control" id="multiSelect" name="roles[]">
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}" @if (in_array($role->id, $user->roles->pluck('id')->toArray())) selected @endif>{{ $role->name }}</option>
                                 @endforeach
                             </select>
                             @error('permissions')
@@ -69,8 +69,8 @@
                                 <label class="form-check-label" for="role">Super Admin</label>
                                 @error('is_super_admin')
                                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -85,4 +85,11 @@
 @push('scripts')
 <script src="{{ asset('assets/plugins/select/selectr.min.js') }}"></script>
 <script src="{{ asset('assets/pages/forms-advanced.js') }}"></script>
+<script>
+    let changePasswordEl = $('.change-password');
+    changePasswordEl.hide();
+    function toggleChangePassword() {
+        changePasswordEl.toggle();
+    }
+</script>
 @endpush
