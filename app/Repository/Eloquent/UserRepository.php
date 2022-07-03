@@ -40,7 +40,10 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
                 $query->where('name', 'like', '%'.$request->roles.'%');
             });
         }
-        return $this->model->paginate($request->limit ?? config('const.paginate_default'));
+
+        return $this->model
+            ->paginate($request->limit ?? config('const.paginate_default'))
+            ->withQueryString();
     }
 
 }

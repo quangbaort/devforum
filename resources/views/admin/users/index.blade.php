@@ -92,7 +92,7 @@
                                 @endif
                                 </tbody>
                             </table>
-                            {{ $users->appends(['sort' => 'votes'])->links('vendor.pagination.custom') }}
+                            {{ $users->links('vendor.pagination.custom') }}
                         </div>
                     </div>
                 </div>
