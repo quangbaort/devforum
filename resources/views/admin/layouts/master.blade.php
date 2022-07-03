@@ -13,6 +13,7 @@
     @stack('css')
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
 
 </head>
@@ -32,7 +33,9 @@
 
 <!-- App js -->
 <script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 @stack('scripts')
 <script src="{{ asset('assets/js/app.js') }}"></script>
+@include('admin.partials.message')
 </body>
 </html>
