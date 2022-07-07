@@ -1,235 +1,134 @@
-<div class="topbar">
-    <!-- Navbar -->
-    <nav class="navbar-custom" id="navbar-custom">
-        <ul class="list-unstyled topbar-nav float-end mb-0">
-            <li class="dropdown">
-                <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
-                   aria-haspopup="false" aria-expanded="false">
-                    <img src="/assets/images/flags/us_flag.jpg" alt="" class="thumb-xxs rounded">
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#"><img src="/assets/images/flags/us_flag.jpg" alt="" height="15" class="me-2">English</a>
-                    <a class="dropdown-item" href="#"><img src="/assets/images/flags/spain_flag.jpg" alt="" height="15" class="me-2">Spanish</a>
-                    <a class="dropdown-item" href="#"><img src="/assets/images/flags/germany_flag.jpg" alt="" height="15" class="me-2">German</a>
-                    <a class="dropdown-item" href="#"><img src="/assets/images/flags/french_flag.jpg" alt="" height="15" class="me-2">French</a>
-                </div>
-            </li><!--end topbar-language-->
+<header id="page-topbar">
+    <div class="layout-width">
+        <div class="navbar-header">
+            <div class="d-flex">
+                <!-- LOGO -->
+                <div class="navbar-brand-box horizontal-logo">
+                    <a href="{{ route('admin.dashboard') }}" class="logo logo-dark">
+                        <span class="logo-sm">
+                            <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="17">
+                        </span>
+                    </a>
 
-            <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
-                   aria-haspopup="false" aria-expanded="false">
-                    <i class="ti ti-mail"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-lg pt-0">
-
-                    <h6 class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
-                        Emails <span class="badge bg-soft-primary badge-pill">3</span>
-                    </h6>
-                    <div class="notification-menu" data-simplebar>
-                        <!-- item-->
-                        <a href="#" class="dropdown-item py-3">
-                            <small class="float-end text-muted ps-2">2 min ago</small>
-                            <div class="media">
-                                <div class="avatar-md bg-soft-primary">
-                                    <img src="/assets/images/users/user-1.jpg" alt="" class="thumb-sm rounded-circle">
-                                </div>
-                                <div class="media-body align-self-center ms-2 text-truncate">
-                                    <h6 class="my-0 fw-normal text-dark">Your order is placed</h6>
-                                    <small class="text-muted mb-0">Dummy text of the printing and industry.</small>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-                        </a><!--end-item-->
-                        <!-- item-->
-                        <a href="#" class="dropdown-item py-3">
-                            <small class="float-end text-muted ps-2">10 min ago</small>
-                            <div class="media">
-                                <div class="avatar-md bg-soft-primary">
-                                    <img src="/assets/images/users/user-4.jpg" alt="" class="thumb-sm rounded-circle">
-                                </div>
-                                <div class="media-body align-self-center ms-2 text-truncate">
-                                    <h6 class="my-0 fw-normal text-dark">Meeting with designers</h6>
-                                    <small class="text-muted mb-0">It is a long established fact that a reader.</small>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-                        </a><!--end-item-->
-                        <!-- item-->
-                        <a href="#" class="dropdown-item py-3">
-                            <small class="float-end text-muted ps-2">40 min ago</small>
-                            <div class="media">
-                                <div class="avatar-md bg-soft-primary">
-                                    <img src="/assets/images/users/user-2.jpg" alt="" class="thumb-sm rounded-circle">
-                                </div>
-                                <div class="media-body align-self-center ms-2 text-truncate">
-                                    <h6 class="my-0 fw-normal text-dark">UX 3 Task complete.</h6>
-                                    <small class="text-muted mb-0">Dummy text of the printing.</small>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-                        </a><!--end-item-->
-                        <!-- item-->
-                        <a href="#" class="dropdown-item py-3">
-                            <small class="float-end text-muted ps-2">1 hr ago</small>
-                            <div class="media">
-                                <div class="avatar-md bg-soft-primary">
-                                    <img src="/assets/images/users/user-5.jpg" alt="" class="thumb-sm rounded-circle">
-                                </div>
-                                <div class="media-body align-self-center ms-2 text-truncate">
-                                    <h6 class="my-0 fw-normal text-dark">Your order is placed</h6>
-                                    <small class="text-muted mb-0">It is a long established fact that a reader.</small>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-                        </a><!--end-item-->
-                        <!-- item-->
-                        <a href="#" class="dropdown-item py-3">
-                            <small class="float-end text-muted ps-2">2 hrs ago</small>
-                            <div class="media">
-                                <div class="avatar-md bg-soft-primary">
-                                    <img src="/assets/images/users/user-3.jpg" alt="" class="thumb-sm rounded-circle">
-                                </div>
-                                <div class="media-body align-self-center ms-2 text-truncate">
-                                    <h6 class="my-0 fw-normal text-dark">Payment Successfull</h6>
-                                    <small class="text-muted mb-0">Dummy text of the printing.</small>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-                        </a><!--end-item-->
-                    </div>
-                    <!-- All-->
-                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
-                        View all <i class="fi-arrow-right"></i>
+                    <a href="{{ route('admin.dashboard') }}" class="logo logo-light">
+                        <span class="logo-sm">
+                            <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="17">
+                        </span>
                     </a>
                 </div>
-            </li>
 
-            <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
-                   aria-haspopup="false" aria-expanded="false">
-                    <i class="ti ti-bell"></i>
-                    <span class="alert-badge"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-lg pt-0">
-
-                    <h6 class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
-                        Notifications <span class="badge bg-soft-primary badge-pill">2</span>
-                    </h6>
-                    <div class="notification-menu" data-simplebar>
-                        <!-- item-->
-                        <a href="#" class="dropdown-item py-3">
-                            <small class="float-end text-muted ps-2">2 min ago</small>
-                            <div class="media">
-                                <div class="avatar-md bg-soft-primary">
-                                    <i class="ti ti-chart-arcs"></i>
-                                </div>
-                                <div class="media-body align-self-center ms-2 text-truncate">
-                                    <h6 class="my-0 fw-normal text-dark">Your order is placed</h6>
-                                    <small class="text-muted mb-0">Dummy text of the printing and industry.</small>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-                        </a><!--end-item-->
-                        <!-- item-->
-                        <a href="#" class="dropdown-item py-3">
-                            <small class="float-end text-muted ps-2">10 min ago</small>
-                            <div class="media">
-                                <div class="avatar-md bg-soft-primary">
-                                    <i class="ti ti-device-computer-camera"></i>
-                                </div>
-                                <div class="media-body align-self-center ms-2 text-truncate">
-                                    <h6 class="my-0 fw-normal text-dark">Meeting with designers</h6>
-                                    <small class="text-muted mb-0">It is a long established fact that a reader.</small>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-                        </a><!--end-item-->
-                        <!-- item-->
-                        <a href="#" class="dropdown-item py-3">
-                            <small class="float-end text-muted ps-2">40 min ago</small>
-                            <div class="media">
-                                <div class="avatar-md bg-soft-primary">
-                                    <i class="ti ti-diamond"></i>
-                                </div>
-                                <div class="media-body align-self-center ms-2 text-truncate">
-                                    <h6 class="my-0 fw-normal text-dark">UX 3 Task complete.</h6>
-                                    <small class="text-muted mb-0">Dummy text of the printing.</small>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-                        </a><!--end-item-->
-                        <!-- item-->
-                        <a href="#" class="dropdown-item py-3">
-                            <small class="float-end text-muted ps-2">1 hr ago</small>
-                            <div class="media">
-                                <div class="avatar-md bg-soft-primary">
-                                    <i class="ti ti-drone"></i>
-                                </div>
-                                <div class="media-body align-self-center ms-2 text-truncate">
-                                    <h6 class="my-0 fw-normal text-dark">Your order is placed</h6>
-                                    <small class="text-muted mb-0">It is a long established fact that a reader.</small>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-                        </a><!--end-item-->
-                        <!-- item-->
-                        <a href="#" class="dropdown-item py-3">
-                            <small class="float-end text-muted ps-2">2 hrs ago</small>
-                            <div class="media">
-                                <div class="avatar-md bg-soft-primary">
-                                    <i class="ti ti-users"></i>
-                                </div>
-                                <div class="media-body align-self-center ms-2 text-truncate">
-                                    <h6 class="my-0 fw-normal text-dark">Payment Successfull</h6>
-                                    <small class="text-muted mb-0">Dummy text of the printing.</small>
-                                </div><!--end media-body-->
-                            </div><!--end media-->
-                        </a><!--end-item-->
-                    </div>
-                    <!-- All-->
-                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
-                        View all <i class="fi-arrow-right"></i>
-                    </a>
-                </div>
-            </li>
-
-            <li class="dropdown">
-                <a class="nav-link dropdown-toggle nav-user" data-bs-toggle="dropdown" href="#" role="button"
-                   aria-haspopup="false" aria-expanded="false">
-                    <div class="d-flex align-items-center">
-                        <img src="/assets/images/users/user-4.jpg" alt="profile-user" class="rounded-circle me-2 thumb-sm" />
-                        <div>
-                            <small class="d-none d-md-block font-11">Admin</small>
-                            <span class="d-none d-md-block fw-semibold font-12">Maria Gibson <i
-                                    class="mdi mdi-chevron-down"></i></span>
-                        </div>
-                    </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="pages-profile.html"><i class="ti ti-user font-16 me-1 align-text-bottom"></i> Profile</a>
-                    <a class="dropdown-item" href="crypto-settings.html"><i class="ti ti-settings font-16 me-1 align-text-bottom"></i> Settings</a>
-                    <div class="dropdown-divider mb-0"></div>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="ti ti-power font-16 me-1 align-text-bottom"></i>
-                        {{ __('Logout') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
-            </li><!--end topbar-profile-->
-            <li class="notification-list">
-                <a class="nav-link arrow-none nav-icon offcanvas-btn" href="#" data-bs-toggle="offcanvas" data-bs-target="#Appearance" role="button" aria-controls="Rightbar">
-                    <i class="ti ti-settings ti-spin"></i>
-                </a>
-            </li>
-        </ul><!--end topbar-nav-->
-
-        <ul class="list-unstyled topbar-nav mb-0">
-            <li>
-                <button class="nav-link button-menu-mobile nav-icon" id="togglemenu">
-                    <i class="ti ti-menu-2"></i>
+                <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger shadow-none" id="topnav-hamburger-icon">
+                    <span class="hamburger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
                 </button>
-            </li>
-            <li class="hide-phone app-search">
-                <form role="search" action="#" method="get">
-                    <input type="search" name="search" class="form-control top-search mb-0" placeholder="Type text...">
-                    <button type="submit"><i class="ti ti-search"></i></button>
+
+                <!-- App Search-->
+                <form class="app-search d-none d-md-block">
+                    <div class="position-relative">
+                        <input type="text" class="form-control" placeholder="@lang('Search...')" autocomplete="off" id="search-options" value="">
+                        <span class="mdi mdi-magnify search-widget-icon"></span>
+                        <span class="mdi mdi-close-circle search-widget-icon search-widget-icon-close d-none" id="search-close-options"></span>
+                    </div>
                 </form>
-            </li>
-        </ul>
-    </nav>
-    <!-- end navbar-->
-</div>
+            </div>
+
+            <div class="d-flex align-items-center">
+
+                <div class="dropdown d-md-none topbar-head-dropdown header-item">
+                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="bx bx-search fs-22"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-search-dropdown">
+                        <form class="p-3">
+                            <div class="form-group m-0">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="@lang('Search...')" aria-label="Recipient's username">
+                                    <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="dropdown ms-1 topbar-head-dropdown header-item">
+                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @switch(Session::get('lang'))
+                            @case('ru')
+                                <img src="{{ asset('/assets/images/flags/russia.svg') }}" class="rounded " alt="Header Language" height="18">
+                                @break
+                            @default
+                                <img src="{{ asset('/assets/images/flags/us.svg') }}" class="rounded " alt="Header Language" height="18">
+                        @endswitch
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+
+                        <!-- item-->
+                        <a href="#" class="dropdown-item notify-item language py-2" data-lang="en" title="@lang('English')">
+                            <img src="{{ asset('assets/images/flags/us.svg') }}" alt="user-image" class="me-2 rounded" height="18">
+                            <span class="align-middle">English</span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="ms-1 header-item d-none d-sm-flex">
+                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none"
+                            data-toggle="fullscreen">
+                        <i class='bx bx-fullscreen fs-22'></i>
+                    </button>
+                </div>
+
+                <div class="ms-1 header-item d-none d-sm-flex">
+                    <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none">
+                        <i class='bx bx-moon fs-22'></i>
+                    </button>
+                </div>
+
+                <div class="dropdown ms-sm-3 header-item topbar-user">
+                    <button type="button" class="btn shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="d-flex align-items-center">
+                            <img class="rounded-circle header-profile-user" src="@if (Auth::user()->avatar != ''){{ asset('images/' . Auth::user()->avatar) }}@else{{ asset('assets/images/users/avatar-1.jpg') }}@endif" alt="Header Avatar">
+                            <span class="text-start ms-xl-2">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{Auth::user()->name}}</span>
+                                <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">@lang('Founder')</span>
+                            </span>
+                        </span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <!-- item-->
+                        <h6 class="dropdown-header">@lang('Welcome Anna!')</h6>
+                        <a class="dropdown-item" href="pages-profile">
+                            <i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i>
+                            <span class="align-middle">@lang('Profile')</span>
+                        </a>
+                        <a class="dropdown-item" href="pages-faqs">
+                            <i class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i>
+                            <span class="align-middle">@lang('Help')</span>
+                        </a>
+                        <a class="dropdown-item" href="pages-profile-settings">
+                            <span class="badge bg-soft-success text-success mt-1 float-end">New</span>
+                            <i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>
+                            <span class="align-middle">@lang('Settings')</span>
+                        </a>
+                        <a class="dropdown-item " href="javascript:()" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="bx bx-power-off font-size-16 align-middle me-1"></i>
+                            <span key="t-logout">@lang('Logout')</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
