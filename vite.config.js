@@ -2,10 +2,5 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-    plugins: [
-        laravel([
-            'resources/js/app.js',
-            'resources/js/fn_common.js',
-        ]),
-    ],
+  plugins: [laravel(['resources/js/app.js'])],
 });

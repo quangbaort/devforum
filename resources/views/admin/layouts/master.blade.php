@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <title>Unikit - Admin & Dashboard Template</title>
@@ -15,27 +16,30 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+    @vite('resources/js/app.js')
 
 </head>
+
 <body id="body" class="dark-sidebar">
-@include('admin.partials.sidebar')
-@include('admin.partials.topbar')
+    @include('admin.partials.sidebar')
+    @include('admin.partials.topbar')
 
-<div class="page-wrapper">
-    <div class="page-content-tab">
-        <div class="container-fluid">
-            {{ Breadcrumbs::render() }}
-            @yield('content')
+    <div class="page-wrapper">
+        <div class="page-content-tab">
+            <div class="container-fluid">
+                {{ Breadcrumbs::render() }}
+                @yield('content')
+            </div>
+            @include('admin.partials.footer')
         </div>
-        @include('admin.partials.footer')
     </div>
-</div>
 
-<!-- App js -->
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-@stack('scripts')
-<script src="{{ asset('assets/js/app.js') }}"></script>
-@include('admin.partials.message')
+    <!-- App js -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @stack('scripts')
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    @include('admin.partials.message')
 </body>
+
 </html>
