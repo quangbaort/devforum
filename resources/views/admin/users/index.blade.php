@@ -56,7 +56,7 @@
                             @forelse($users as $user)
                                 <tr>
                                     <td>
-                                        <img src="{{ asset('assets/images/users/user-3.jpg') }}" alt="" class="rounded-circle thumb-xs me-1">
+                                        <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="" class="rounded-circle" width="50">
                                         {{ $user->name }}
                                     </td>
                                     <td>{{ $user->email }}</td>
